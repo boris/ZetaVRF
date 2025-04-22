@@ -1,6 +1,7 @@
 # Default values for range parameters
 MIN ?= 0
 MAX ?= 100
+ADDRESS ?= 0xYourAddressHere
 
 .PHONY: setup
 setup: ## Setup the project
@@ -31,6 +32,11 @@ random: ## Request a random number (defaults: MIN=0, MAX=100)
 clean: ## Clean build artifacts
 	npx hardhat clean
 	rm -rf node_modules
+
+.PHONY: faucet
+faucet: ## Drip 3 ZETA testnet tokens to the desired address every 24h. (Requires Github login).
+	@echo "Dripping 3 ZETA testnet tokens to $(ADDRESS)"
+	npx zetafaucet --drip --address $(ADDRESS)
 
 help:
 	@grep -E '^[a-zA-Z_-]+:.*?## .*$$' $(firstword $(MAKEFILE_LIST)) | sort | awk 'BEGIN {FS = ":.*?## "}; {printf "\033[36m%-30s\033[0m %s\n", $$1, $$2}'
