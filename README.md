@@ -1,6 +1,13 @@
 # ZetaChain VRF
 
-A Verifiable Random Function (VRF) implementation for ZetaChain that provides cryptographically secure random numbers that can be verified on-chain.
+A Verifiable Random Function (VRF) implementation for ZetaChain that provides
+cryptographically secure random numbers that can be verified on-chain.
+
+This project is designed to be simple, efficient, and easy to integrate into
+your ZetaChain applications. Worth noting that, given the contract uses future
+blockhashes as a source of entropy, **it provides unpredictability but not true
+randomness**, same as any other VRF implementation that uses blockhashes. Here
+we're just proving that the outputs were calculated correctly.
 
 ## Motivation
 
