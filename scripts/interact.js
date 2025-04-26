@@ -2,7 +2,7 @@ const { ethers } = require("hardhat");
 
 async function main() {
   // Contract address from environment or default
-  const CONTRACT_ADDRESS = process.env.CONTRACT_ADDRESS || "0x1CEbee87b3E780fbA2A56AfA8CA543830d0c84A5";
+  const CONTRACT_ADDRESS = process.env.CONTRACT_ADDRESS || "0xA422d6BCAD7705CC100187fa784D0FD06aecbcC8";
   
   // Define the range for the random number
   const MIN_VALUE = BigInt(process.env.MIN || 0);

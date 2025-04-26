@@ -8,11 +8,17 @@
   "keywords": [],
   "author": "",
   "license": "ISC",
-  "description": "",
+  "description": "A Verifiable Random Function (VRF) implementation for ZetaChain that provides cryptographically secure random numbers that can be verified on-chain.",
   "devDependencies": {
     "@nomicfoundation/hardhat-toolbox": "^5.0.0",
-    "dotenv": "^16.4.7",
+    "dotenv": "^16.5.0",
     "ethers": "^6.13.5",
-    "hardhat": "^2.22.19"
+    "hardhat": "^2.23.0"
+  },
+  "directories": {
+    "test": "test"
+  },
+  "dependencies": {
+    "@zetachain/faucet-cli": "^4.1.1"
   }
 }
