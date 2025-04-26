@@ -7,8 +7,6 @@ const PRIVATE_KEY = process.env.PRIVATE_KEY;
 const ZETACHAIN_TESTNET_URL = process.env.ZETACHAIN_TESTNET_URL || "https://zetachain-athens-evm.blockpi.network/v1/rpc/public";
 // Etherscan API key for contract verification
 const ETHERSCAN_API_KEY = process.env.ETHERSCAN_API_KEY;
-// Infura API key for Etherscan verification
-const INFURA_API_KEY = process.env.INFURA_API_KEY;
 
 /** @type import('hardhat/config').HardhatUserConfig */
 module.exports = {
@@ -29,7 +27,20 @@ module.exports = {
         cache: "./cache",
         artifacts: "./artifacts",
     },
+    sourcify: {
+        enabled: true,
+    },
     etherscan: {
-        apiKey: ETHERSCAN_API_KEY,
+        apiKey: {
+            zetachainTestnet: ETHERSCAN_API_KEY,
+        },
+        customChains: [{
+            network: "zetachainTestnet",
+            chainId: 7001,
+            urls: {
+                apiURL: "https://zetachain-testnet.blockscout.com/api",
+                browserURL: "https://zetachain-testnet.blockscout.com/",
+            },
+        }]
     },
 };
