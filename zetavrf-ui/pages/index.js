@@ -30,6 +30,7 @@ export default function Home() {
   const [result, setResult] = useState('');
   const [pollStatus, setPollStatus] = useState('');
   const [loading, setLoading] = useState(false);
+  const [txLink, setTxLink] = useState('');
 
   const requestRandom = async () => {
   if (!window.ethereum) {
@@ -69,12 +70,17 @@ export default function Home() {
     // 3. Fulfill the request
     const fulfillTx = await contract.fulfillRandomNumber(requestId);
     await fulfillTx.wait();
+    const fulfillHash = fulfillTx.hash;
+    const txUrl = `https://zetachain-athens-3.blockscout.com/tx/${fulfillHash}`;
+    setTxLink(txUrl);
 
     setPollStatus("✅ Fulfilled! Fetching bounded random...");
 
     // 4. Poll until getRandomNumberInRange() is ready
     const bounded = await waitForFulfillment(contract, requestId, min, max, setPollStatus);
     setResult(`🎲 Random result: ${bounded}`);
+    setPollStatus('');
+
   } catch (err) {
     console.error(err);
     alert(err.message || "An unexpected error occurred");
@@ -94,6 +100,11 @@ export default function Home() {
       </button>
       {pollStatus && <p>⏳ {pollStatus}</p>}
       {result && <p>{result}</p>}
+      {txLink && (
+      <p>
+        🔗 <a href={txLink} target="_blank" rel="noopener noreferrer">View fulfillment tx on Blockscout</a>
+      </p>
+      )}
     </main>
   );
 }
