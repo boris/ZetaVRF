@@ -34,7 +34,7 @@ clean: ## Clean build artifacts
 	rm -rf node_modules
 
 .PHONY: faucet
-faucet: ## Drip 3 ZETA testnet tokens to the desired address every 24h. (Requires Github login).
+faucet: ## Drip 3 ZETA testnet tokens to the desired address every 24h. (Requires GitHub login).
 	@echo "Dripping 3 ZETA testnet tokens to $(ADDRESS)"
 	npx zetafaucet --drip --address $(ADDRESS)
 
